@@ -95,13 +95,15 @@
   margin-right: 8px;
 }
 .btn_edit,
-.btn_del {
+.btn_del,
+.btn_del_completed {
   cursor: pointer;
   transition: all 0.5s;
 }
 
 .btn_edit:hover,
-.btn_del:hover {
+.btn_del:hover,
+.btn_del_completed:hover {
   color: #916539;
 }
 .todo_cbox:checked ~ .todo__text {

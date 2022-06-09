@@ -3,6 +3,8 @@ const input = document.querySelector(".todo_input");
 const addBtn = document.querySelector(".todo_btn");
 const todoList = document.querySelector(".todo_list");
 const todoContainer = document.querySelector(".todo_container");
+let delBtns;
+
 // hour:minutes date/month/year
 let d = new Date();
 console.log(
@@ -79,6 +81,7 @@ const starter = () => {
     todos.forEach((todo) => {
       addTodoList(todo);
     });
+    delBtns = document.querySelectorAll(".btn_del");
   }
 };
 starter();
@@ -99,6 +102,18 @@ const addTodo = (e) => {
   localStorage.setItem("todos", JSON.stringify(todos));
   //   console.log(todos);
   addTodoList(todo);
-  input.reset();
+  input.value = "";
+};
+
+// Delete Todo Function
+const deleteTodo = (e) => {
+  const todo = e.target.closest(".list");
+  const text = todo.firstChild.children[1].textContent;
+
+  let todos = JSON.parse(localStorage.getItem("todos"));
+  todos = todos.filter((todo) => todo.text != text);
+  localStorage.setItem("todos", JSON.stringify(todos));
+  todo.remove();
 };
 addBtn.addEventListener("click", addTodo);
+delBtns.forEach((btn) => btn.addEventListener("click", deleteTodo));
