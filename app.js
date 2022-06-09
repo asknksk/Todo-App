@@ -4,6 +4,7 @@ const addBtn = document.querySelector(".todo_btn");
 const todoList = document.querySelector(".todo_list");
 const todoContainer = document.querySelector(".todo_container");
 let delBtns;
+let checkboxes;
 
 // hour:minutes date/month/year
 let d = new Date();
@@ -82,6 +83,8 @@ const starter = () => {
       addTodoList(todo);
     });
     delBtns = document.querySelectorAll(".btn_del");
+    checkboxes = document.querySelectorAll(".todo_cbox");
+    console.log(checkboxes);
   }
 };
 starter();
@@ -115,5 +118,8 @@ const deleteTodo = (e) => {
   localStorage.setItem("todos", JSON.stringify(todos));
   todo.remove();
 };
+
+// Checkbox click Function. if click to convert
 addBtn.addEventListener("click", addTodo);
 delBtns.forEach((btn) => btn.addEventListener("click", deleteTodo));
+checkboxes.forEach((btn) => btn.addEventListener("click", cbCompleted));
