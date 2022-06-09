@@ -3,6 +3,8 @@ const input = document.querySelector(".todo_input");
 const addBtn = document.querySelector(".todo_btn");
 const todoList = document.querySelector(".todo_list");
 const todoContainer = document.querySelector(".todo_container");
+const completedDivParent = document.querySelector(".completed_list");
+console;
 let delBtns;
 let checkboxes;
 
@@ -73,6 +75,39 @@ const addTodoList = (todo) => {
   todoList.appendChild(todoDiv);
   todoContainer.appendChild(todoList);
 };
+const addCompletedList = (todo) => {
+  const completedDiv = document.createElement("div");
+  completedDiv.classList.add("list_completed");
+
+  const completedDivListLeft = document.createElement("div");
+  completedDivListLeft.classList.add("list__left");
+
+  const completedDivLeftText = document.createElement("span");
+  completedDivLeftText.classList.add("todo__text");
+  completedDivLeftText.textContent = todo.text;
+  completedDivListLeft.appendChild(completedDivLeftText);
+
+  const completedDivRight = document.createElement("div");
+  completedDivRight.classList.add("list__right");
+
+  const completedDivRightDate = document.createElement("span");
+  completedDivRightDate.classList.add("date_time");
+
+  const completedDivRightDel = document.createElement("span");
+  completedDivRightDel.classList.add("btn_del_completed");
+
+  const completedDivRightDelI = document.createElement("i");
+  completedDivRightDelI.classList.add("fa-solid");
+  completedDivRightDelI.classList.add("fa-trash-can");
+
+  completedDivRightDel.appendChild(completedDivRightDelI);
+  completedDivRight.appendChild(completedDivRightDate);
+  completedDivRight.appendChild(completedDivRightDel);
+
+  completedDiv.appendChild(completedDivListLeft);
+  completedDiv.appendChild(completedDivRight);
+  completedDivParent.appendChild(completedDiv);
+};
 
 const starter = () => {
   const todos = JSON.parse(localStorage.getItem("todos"));
@@ -80,11 +115,15 @@ const starter = () => {
     localStorage.setItem("todos", JSON.stringify([]));
   } else {
     todos.forEach((todo) => {
-      addTodoList(todo);
+      if (todo.isCompleted == false) {
+        addTodoList(todo);
+      } else {
+        addCompletedList(todo);
+      }
     });
     delBtns = document.querySelectorAll(".btn_del");
     checkboxes = document.querySelectorAll(".todo_cbox");
-    console.log(checkboxes);
+    // console.log(checkboxes);
   }
 };
 starter();
@@ -120,6 +159,19 @@ const deleteTodo = (e) => {
 };
 
 // Checkbox click Function. if click to convert
+const cbCompleted = (e) => {
+  const todo = e.target.closest(".list");
+  const text = todo.firstChild.children[1].textContent;
+
+  let todos = JSON.parse(localStorage.getItem("todos"));
+  todos.forEach((todo) => {
+    if (todo.text === text) {
+      todo.isCompleted = !todo.isCompleted;
+    }
+  });
+  localStorage.setItem("todos", JSON.stringify(todos));
+};
+
 addBtn.addEventListener("click", addTodo);
 delBtns.forEach((btn) => btn.addEventListener("click", deleteTodo));
 checkboxes.forEach((btn) => btn.addEventListener("click", cbCompleted));

@@ -66,9 +66,13 @@
   padding: 1rem 1rem;
   width: 30%;
   text-align: center;
+  align-self: flex-start;
 }
 .todo_container h2 {
   font-size: 1.8rem;
+}
+.completed_list {
+  order: 2;
 }
 
 .list,
