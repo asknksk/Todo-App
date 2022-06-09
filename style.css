@@ -56,6 +56,7 @@
   display: flex;
   align-items: center;
   justify-content: space-evenly;
+  flex-direction: row;
 }
 
 .todo_list,
@@ -76,6 +77,11 @@
   align-items: center;
   justify-content: space-between;
   border-bottom: 1px solid #5f4d3a;
+  line-height: 1.5rem;
+}
+.list:last-child,
+.list_completed:last-child {
+  border: none;
 }
 .list__left {
   display: flex;
