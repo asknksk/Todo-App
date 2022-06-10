@@ -10,6 +10,7 @@ let checkboxes;
 let d = new Date(); // hour:minutes date/month/year
 let btnDelCompleted;
 let editBtns;
+let explanation = document.querySelector(".explanation");
 
 //functions
 const addTodoList = (todo) => {
@@ -179,6 +180,7 @@ const delCompleted = (e) => {
   localStorage.setItem("todos", JSON.stringify(todos));
 
   todo.remove();
+  window.location.reload();
 };
 
 // Checkbox click Function. if click to convert
@@ -217,3 +219,14 @@ delBtns.forEach((btn) => btn.addEventListener("click", deleteTodo));
 checkboxes.forEach((btn) => btn.addEventListener("change", cbCompleted));
 editBtns.forEach((btn) => btn.addEventListener("click", editTodo));
 btnDelCompleted.forEach((btn) => btn.addEventListener("click", delCompleted));
+if (document.querySelectorAll(".list").length > 0) {
+  explanation.innerHTML = `You have ${
+    document.querySelectorAll(".list").length
+  } unfinished task.`;
+}
+explanation.innerHTML += "<br>";
+if (document.querySelectorAll(".list_completed").length > 0) {
+  explanation.innerHTML += `You finished ${
+    document.querySelectorAll(".list_completed").length
+  } task. Congratulations🎉🎉`;
+}

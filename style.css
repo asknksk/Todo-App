@@ -67,6 +67,8 @@
   width: 30%;
   text-align: center;
   align-self: flex-start;
+  max-height: 400px;
+  overflow: auto;
 }
 .todo_container h2 {
   font-size: 1.8rem;
@@ -113,4 +115,36 @@
 .todo_cbox:checked ~ .todo__text {
   text-decoration: line-through;
   color: #886d51;
+}
+
+.explanation {
+  color: #bd8d59;
+  font-size: 1.5rem;
+  align-self: flex-start;
+}
+
+/* RESPONSIVE */
+@media only screen and (max-width: 600px) {
+  .list,
+  .list_completed {
+    display: flex;
+    align-items: flex-start;
+    /* justify-content: flex-start; */
+    flex-direction: column;
+    border-bottom: 1px solid #5f4d3a;
+    line-height: 1.5rem;
+    text-align: center;
+  }
+  .date_time {
+    display: none;
+  }
+  .list__right {
+    align-self: center;
+  }
+}
+@media only screen and (max-width: 768px) {
+  .todo_list,
+  .completed_list {
+    max-height: 600px;
+  }
 }
