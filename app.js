@@ -9,6 +9,7 @@ let delBtns;
 let checkboxes;
 let d = new Date(); // hour:minutes date/month/year
 let btnDelCompleted;
+let editBtns;
 
 //functions
 const addTodoList = (todo) => {
@@ -115,6 +116,7 @@ const starter = () => {
     });
     delBtns = document.querySelectorAll(".btn_del");
     checkboxes = document.querySelectorAll(".todo_cbox");
+    editBtns = document.querySelectorAll(".btn_edit");
     btnDelCompleted = document.querySelectorAll(".btn_del_completed");
 
     // console.log(checkboxes);
@@ -197,7 +199,21 @@ const cbCompleted = (e) => {
   window.location.reload();
 };
 
+//edit Todo Function
+const editTodo = (e) => {
+  const todo = e.target.closest(".list");
+  const text = todo.firstChild.children[1].textContent;
+
+  let todos = JSON.parse(localStorage.getItem("todos"));
+  todos = todos.filter((todo) => todo.text != text);
+  localStorage.setItem("todos", JSON.stringify(todos));
+
+  todo.remove();
+  input.value = text;
+};
+
 addBtn.addEventListener("click", addTodo);
 delBtns.forEach((btn) => btn.addEventListener("click", deleteTodo));
 checkboxes.forEach((btn) => btn.addEventListener("change", cbCompleted));
+editBtns.forEach((btn) => btn.addEventListener("click", editTodo));
 btnDelCompleted.forEach((btn) => btn.addEventListener("click", delCompleted));
