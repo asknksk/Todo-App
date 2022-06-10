@@ -83,7 +83,8 @@ const addCompletedList = (todo) => {
   completedDivRightDate.textContent = todo.dateTime;
 
   const completedDivRightDel = document.createElement("span");
-  completedDivRightDel.classList.add("btn_del_completed");
+  completedDivRightDel.classList.add("btn_del");
+  completedDivRightDel.classList.add("confirm");
 
   const completedDivRightDelI = document.createElement("i");
   completedDivRightDelI.classList.add("fa-solid");
@@ -157,7 +158,11 @@ const deleteTodo = (e) => {
   let todos = JSON.parse(localStorage.getItem("todos"));
   todos = todos.filter((todo) => todo.text != text);
   localStorage.setItem("todos", JSON.stringify(todos));
-  todo.remove();
+  if (e.target.className == "btn_del confirm") {
+    todo.remove();
+  } else {
+    confirm("Product will be removed");
+  }
 };
 
 // Checkbox click Function. if click to convert
