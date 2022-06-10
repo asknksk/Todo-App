@@ -114,6 +114,8 @@ const starter = () => {
   if (!todos) {
     localStorage.setItem("todos", JSON.stringify([]));
   } else {
+    // const delCompletedList = document.querySelector(".list_completed");
+    // delCompletedList.innerHTML = "";
     todos.forEach((todo) => {
       if (todo.isCompleted == false) {
         addTodoList(todo);
@@ -145,6 +147,7 @@ const addTodo = (e) => {
   //   console.log(todos);
   addTodoList(todo);
   input.value = "";
+  window.location.reload();
 };
 
 // Delete Todo Function
@@ -162,16 +165,20 @@ const deleteTodo = (e) => {
 const cbCompleted = (e) => {
   const todo = e.target.closest(".list");
   const text = todo.firstChild.children[1].textContent;
-
+  // console.log(text);
   let todos = JSON.parse(localStorage.getItem("todos"));
   todos.forEach((todo) => {
     if (todo.text === text) {
       todo.isCompleted = !todo.isCompleted;
     }
   });
+  console.log(todos);
+  // todos.isCompleted = e.target.checked
+  // console.log(e.target.checked);
   localStorage.setItem("todos", JSON.stringify(todos));
+  window.location.reload();
 };
 
 addBtn.addEventListener("click", addTodo);
 delBtns.forEach((btn) => btn.addEventListener("click", deleteTodo));
-checkboxes.forEach((btn) => btn.addEventListener("click", cbCompleted));
+checkboxes.forEach((btn) => btn.addEventListener("change", cbCompleted));
