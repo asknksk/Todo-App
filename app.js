@@ -8,6 +8,7 @@ console;
 let delBtns;
 let checkboxes;
 let d = new Date(); // hour:minutes date/month/year
+let btnDelCompleted;
 
 //functions
 const addTodoList = (todo) => {
@@ -83,8 +84,7 @@ const addCompletedList = (todo) => {
   completedDivRightDate.textContent = todo.dateTime;
 
   const completedDivRightDel = document.createElement("span");
-  completedDivRightDel.classList.add("btn_del");
-  completedDivRightDel.classList.add("confirm");
+  completedDivRightDel.classList.add("btn_del_completed");
 
   const completedDivRightDelI = document.createElement("i");
   completedDivRightDelI.classList.add("fa-solid");
@@ -115,6 +115,8 @@ const starter = () => {
     });
     delBtns = document.querySelectorAll(".btn_del");
     checkboxes = document.querySelectorAll(".todo_cbox");
+    btnDelCompleted = document.querySelectorAll(".btn_del_completed");
+
     // console.log(checkboxes);
   }
 };
@@ -158,11 +160,23 @@ const deleteTodo = (e) => {
   let todos = JSON.parse(localStorage.getItem("todos"));
   todos = todos.filter((todo) => todo.text != text);
   localStorage.setItem("todos", JSON.stringify(todos));
-  if (e.target.className == "btn_del confirm") {
+  if (
+    confirm("You have not completed the task, would you like to delete it?")
+  ) {
     todo.remove();
-  } else {
-    confirm("Product will be removed");
   }
+};
+
+// Delete "Completed Todo" Function
+const delCompleted = (e) => {
+  const todo = e.target.closest(".list_completed");
+  const text = todo.firstChild.children[0].textContent;
+
+  let todos = JSON.parse(localStorage.getItem("todos"));
+  todos = todos.filter((todo) => todo.text != text);
+  localStorage.setItem("todos", JSON.stringify(todos));
+
+  todo.remove();
 };
 
 // Checkbox click Function. if click to convert
@@ -186,3 +200,4 @@ const cbCompleted = (e) => {
 addBtn.addEventListener("click", addTodo);
 delBtns.forEach((btn) => btn.addEventListener("click", deleteTodo));
 checkboxes.forEach((btn) => btn.addEventListener("change", cbCompleted));
+btnDelCompleted.forEach((btn) => btn.addEventListener("click", delCompleted));
