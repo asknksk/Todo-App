@@ -7,20 +7,7 @@ const completedDivParent = document.querySelector(".completed_list");
 console;
 let delBtns;
 let checkboxes;
-
-// hour:minutes date/month/year
-let d = new Date();
-console.log(
-  d.getHours() +
-    ":" +
-    d.getMinutes() +
-    " " +
-    d.getDate() +
-    "/" +
-    d.getMonth() +
-    "/" +
-    d.getFullYear().toString().substr(-2)
-);
+let d = new Date(); // hour:minutes date/month/year
 
 //functions
 const addTodoList = (todo) => {
@@ -47,6 +34,7 @@ const addTodoList = (todo) => {
 
   const todoDivRightDate = document.createElement("span");
   todoDivRightDate.classList.add("date_time");
+  todoDivRightDate.textContent = todo.dateTime;
 
   const todoDivRightEdit = document.createElement("span");
   todoDivRightEdit.classList.add("btn_edit");
@@ -92,6 +80,7 @@ const addCompletedList = (todo) => {
 
   const completedDivRightDate = document.createElement("span");
   completedDivRightDate.classList.add("date_time");
+  completedDivRightDate.textContent = todo.dateTime;
 
   const completedDivRightDel = document.createElement("span");
   completedDivRightDel.classList.add("btn_del_completed");
@@ -139,6 +128,16 @@ const addTodo = (e) => {
   const todo = {
     text: todoText,
     isCompleted: false,
+    dateTime:
+      d.getHours() +
+      ":" +
+      d.getMinutes() +
+      " " +
+      d.getDate() +
+      "/" +
+      d.getMonth() +
+      "/" +
+      d.getFullYear().toString().substr(-2),
   };
 
   const todos = JSON.parse(localStorage.getItem("todos"));
