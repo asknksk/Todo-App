@@ -117,10 +117,28 @@
   color: #886d51;
 }
 
+/* EXPLANATIN AND CLOCK DIV*/
 .explanation {
   color: #bd8d59;
   font-size: 1.5rem;
-  align-self: flex-start;
+  /* align-self: flex-start; */
+}
+.exp_clock {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  text-align: center;
+}
+.explanation {
+  font-size: 1.5rem;
+  background-color: rgba(250, 235, 215, 0.8);
+  color: #5f4d3a;
+}
+.clock {
+  font-size: 1.5rem;
+  letter-spacing: 7px;
+  background-color: rgba(250, 235, 215, 0.8);
+  color: #5f4d3a;
 }
 
 /* RESPONSIVE */
