@@ -106,7 +106,9 @@
   cursor: pointer;
   transition: all 0.5s;
 }
-
+.btn_edit {
+  padding: 6px;
+}
 .btn_edit:hover,
 .btn_del:hover,
 .btn_del_completed:hover {
@@ -115,6 +117,9 @@
 .todo_cbox:checked ~ .todo__text {
   text-decoration: line-through;
   color: #886d51;
+}
+.date_time {
+  font-size: 0.9rem;
 }
 
 /* EXPLANATIN AND CLOCK DIV*/

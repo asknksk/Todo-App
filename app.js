@@ -11,6 +11,16 @@ let d = new Date(); // hour:minutes date/month/year
 let btnDelCompleted;
 let editBtns;
 let explanation = document.querySelector(".explanation");
+let timeDate =
+  d.getHours() +
+  ":" +
+  d.getMinutes() +
+  " " +
+  d.getDate() +
+  "/" +
+  d.getMonth() +
+  "/" +
+  d.getFullYear().toString().substr(-2);
 
 //functions
 const addTodoList = (todo) => {
@@ -83,7 +93,9 @@ const addCompletedList = (todo) => {
 
   const completedDivRightDate = document.createElement("span");
   completedDivRightDate.classList.add("date_time");
-  completedDivRightDate.textContent = todo.dateTime;
+  completedDivRightDate.innerHTML = `S: ${todo.dateTime}`;
+  completedDivRightDate.innerHTML += "<br>";
+  completedDivRightDate.innerHTML += `C: ${todo.completedTime}`;
 
   const completedDivRightDel = document.createElement("span");
   completedDivRightDel.classList.add("btn_del_completed");
@@ -144,6 +156,17 @@ const addTodo = (e) => {
       d.getMonth() +
       "/" +
       d.getFullYear().toString().substr(-2),
+
+    completedTime:
+      d.getHours() +
+      ":" +
+      d.getMinutes() +
+      " " +
+      d.getDate() +
+      "/" +
+      d.getMonth() +
+      "/" +
+      d.getFullYear().toString().substr(-2),
   };
 
   const todos = JSON.parse(localStorage.getItem("todos"));
@@ -187,11 +210,11 @@ const delCompleted = (e) => {
 const cbCompleted = (e) => {
   const todo = e.target.closest(".list");
   const text = todo.firstChild.children[1].textContent;
-  // console.log(text);
   let todos = JSON.parse(localStorage.getItem("todos"));
   todos.forEach((todo) => {
     if (todo.text === text) {
       todo.isCompleted = !todo.isCompleted;
+      todo.completedTime = timeDate;
     }
   });
   console.log(todos);
