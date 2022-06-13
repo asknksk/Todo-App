@@ -10,9 +10,9 @@
 
 # Project Preview
 
-![Alt Text]()
+![Alt Text](https://github.com/asknksk/Todo-App/blob/master/img/Animation_Preview.gif)
 
 ## Project Link
 
-<a href="https://asknksk.github.io/Todo-App/">GitHub Link</a> to access my project.
+<a href="https://asknksk.github.io/Todo-App/">GitHub Link</a> to access my project. <br>
 <a href="https://appto-do.netlify.app/">Netlify Link</a> to access my project.
