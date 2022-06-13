@@ -14,5 +14,5 @@
 
 ## Project Link
 
-<a href="https://asknksk.github.io/Todo-App/">GitHub Link</a> to access my project.
+<a href="https://asknksk.github.io/Todo-App/">GitHub Link</a> to access my project. <br>
 <a href="https://appto-do.netlify.app/">Netlify Link</a> to access my project.
