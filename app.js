@@ -23,6 +23,12 @@ let timeDate =
   d.getFullYear().toString().substr(-2);
 
 //functions
+window.addEventListener("keydown", (e) => {
+  if (e.code == "NumpadEnter" || e.code == "Enter") {
+    addTodoList();
+  }
+});
+
 const addTodoList = (todo) => {
   const todoDiv = document.createElement("div");
   todoDiv.classList.add("list");
@@ -131,8 +137,6 @@ const starter = () => {
     checkboxes = document.querySelectorAll(".todo_cbox");
     editBtns = document.querySelectorAll(".btn_edit");
     btnDelCompleted = document.querySelectorAll(".btn_del_completed");
-
-    // console.log(checkboxes);
   }
 };
 starter();
@@ -142,7 +146,7 @@ const addTodo = (e) => {
   e.preventDefault();
 
   todoText = input.value;
-
+  if (!todoText) return;
   const todo = {
     text: todoText,
     isCompleted: false,
@@ -172,7 +176,7 @@ const addTodo = (e) => {
   const todos = JSON.parse(localStorage.getItem("todos"));
   todos.push(todo);
   localStorage.setItem("todos", JSON.stringify(todos));
-  //   console.log(todos);
+
   addTodoList(todo);
   input.value = "";
   window.location.reload();
@@ -218,8 +222,7 @@ const cbCompleted = (e) => {
     }
   });
   console.log(todos);
-  // todos.isCompleted = e.target.checked
-  // console.log(e.target.checked);
+
   localStorage.setItem("todos", JSON.stringify(todos));
   window.location.reload();
 };
@@ -242,6 +245,8 @@ delBtns.forEach((btn) => btn.addEventListener("click", deleteTodo));
 checkboxes.forEach((btn) => btn.addEventListener("change", cbCompleted));
 editBtns.forEach((btn) => btn.addEventListener("click", editTodo));
 btnDelCompleted.forEach((btn) => btn.addEventListener("click", delCompleted));
+
+// EXPLANATION BLOCK
 if (document.querySelectorAll(".list").length > 0) {
   explanation.innerHTML = `You have ${
     document.querySelectorAll(".list").length
