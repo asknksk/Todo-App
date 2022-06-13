@@ -4,7 +4,7 @@ const addBtn = document.querySelector(".todo_btn");
 const todoList = document.querySelector(".todo_list");
 const todoContainer = document.querySelector(".todo_container");
 const completedDivParent = document.querySelector(".completed_list");
-console;
+
 let delBtns;
 let checkboxes;
 let d = new Date(); // hour:minutes date/month/year
@@ -221,7 +221,7 @@ const cbCompleted = (e) => {
       todo.completedTime = timeDate;
     }
   });
-  console.log(todos);
+ 
 
   localStorage.setItem("todos", JSON.stringify(todos));
   window.location.reload();

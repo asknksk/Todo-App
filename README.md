@@ -10,7 +10,7 @@
 
 # Project Preview
 
-![Alt Text]()
+![Alt Text](https://github.com/asknksk/Todo-App/blob/master/img/Animation_Preview.gif)
 
 ## Project Link
 
